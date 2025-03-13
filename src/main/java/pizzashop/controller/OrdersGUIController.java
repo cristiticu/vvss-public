@@ -51,15 +51,15 @@ public class OrdersGUIController {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public static void setTotalAmount(double totalAmount) {
         OrdersGUIController.totalAmount = totalAmount;
     }
 
     private PizzaService service;
     private int tableNumber;
 
-    public ObservableList<String> observableList;
-    private TableView<MenuDataModel> table = new TableView<MenuDataModel>();
+    private ObservableList<String> observableList;
+    private TableView<MenuDataModel> table = new TableView<>();
     private ObservableList<MenuDataModel> menuData;// = FXCollections.observableArrayList();
     private Calendar now = Calendar.getInstance();
     private static double totalAmount;
