@@ -44,6 +44,18 @@ public class PaymentRepositoryTest {
     }
 
     @Test
+    @DisplayName("Valid Payment 2")
+    void add_ValidPayment_2() {
+        Payment validPayment = new Payment(1, PaymentType.Card, 0.0);
+        paymentRepository.add(validPayment);
+        try {
+            assertTrue(isPaymentInFile(validPayment));
+        } catch (Exception e) {
+            fail("Unexpected exception");
+        }
+    }
+
+    @Test
     @DisplayName("Invalid Payment - amount")
     void add_InvalidPayment_Amount() {
         Payment invalidPayment = new Payment(8, PaymentType.Card, -1.0);
