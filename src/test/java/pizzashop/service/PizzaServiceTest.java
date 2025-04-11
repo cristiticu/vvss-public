@@ -3,13 +3,9 @@ package pizzashop.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -84,7 +80,7 @@ public class PizzaServiceTest {
     @DisplayName("Two non-matching payments")
     public void getTotalTwoNonMatchingPayments() {
         List<Payment> payments = List.of(
-                new Payment(1, PaymentType.Cash, 10000000.0),
+                new Payment(1, PaymentType.Cash, 1000000.0),
                 new Payment(1, PaymentType.Cash, 1000000.0));
 
         when(paymentRepository.getAll()).thenReturn(payments);
