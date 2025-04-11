@@ -35,10 +35,10 @@ public class PizzaService {
         double total = 0.0f;
         List<Payment> payments = getPayments();
 
-        if ((payments.size() == 0))
+        if ((payments == null))
             return total;
 
-        if ((payments == null))
+        if ((payments.size() == 0))
             return total;
 
         for (Payment payment : payments) {
