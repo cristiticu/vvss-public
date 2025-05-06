@@ -1,4 +1,4 @@
-package pizzashop.integration;
+package pizzashop.repository;
 
 import org.junit.jupiter.api.*;
 import java.io.*;
