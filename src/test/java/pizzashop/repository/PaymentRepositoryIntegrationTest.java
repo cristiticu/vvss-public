@@ -7,7 +7,6 @@ import java.util.*;
 
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
-import pizzashop.repository.PaymentRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.*;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.PaymentRepository;
-import pizzashop.service.PizzaService;
 
 import java.io.IOException;
 import java.nio.file.*;
