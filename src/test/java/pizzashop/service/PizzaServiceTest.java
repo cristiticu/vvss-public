@@ -1,7 +1,8 @@
 package pizzashop.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import pizzashop.model.MenuDataModel;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
@@ -102,5 +104,35 @@ public class PizzaServiceTest {
 
         double result = pizzaService.getTotalAmount(PaymentType.Card);
         assertEquals(60.0, result);
+    }
+
+    @Test
+    @DisplayName("Get menu data returns value from repository")
+    public void getMenuData_ReturnsFromRepo() {
+        List<MenuDataModel> mockMenu = List.of(new MenuDataModel("Pizza", 1, 10.0));
+        when(menuRepository.getMenu()).thenReturn(mockMenu);
+
+        List<MenuDataModel> result = pizzaService.getMenuData();
+        assertSame(mockMenu, result);
+    }
+
+    @Test
+    @DisplayName("Get payments returns value from repository")
+    public void getPayments_ReturnsFromRepo() {
+        List<Payment> mockPayments = List.of(new Payment(1, PaymentType.Cash, 100.0));
+        when(paymentRepository.getAll()).thenReturn(mockPayments);
+
+        List<Payment> result = pizzaService.getPayments();
+        assertSame(mockPayments, result);
+    }
+
+    @Test
+    @DisplayName("Add payment delegates to repository")
+    public void addPayment_DelegatesToRepo() {
+        pizzaService.addPayment(5, PaymentType.Card, 25.0);
+        verify(paymentRepository, times(1)).add(
+                argThat(p -> p.getTableNumber() == 5 &&
+                        p.getType() == PaymentType.Card &&
+                        p.getAmount() == 25.0));
     }
 }
